@@ -515,3 +515,66 @@ h3 {
     background: #000;
     color: white;
 }
+
+.benefits {
+    background-color: #181818;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(180deg, #8a2be2, #00cfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit {
+    max-width: 450px;
+    text-align: left;
+}
+
+.benefit h3 {
+    font-size: 1rem;
+    opacity: 1.0;
+}
+
+.benefit p {
+    font-size: 0.9rem;
+    opacity: 0.4;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #222; /* Dark track background */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a0a0a0; /* Light gray scrollbar handle */
+    border-radius: 4px; /* Rounded edges */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Darker on hover */
+}
