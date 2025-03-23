@@ -1,0 +1,171 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Dark Mode Background */
+body {
+    background: #121212; /* Dark background */
+    color: white; /* Text in white */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navigation Bar */
+header {
+    width: 100%;
+    background: linear-gradient(90deg, #2d89ef, #a133ff); /* Blue to Purple Gradient */
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Dashboard Layout */
+.dashboard {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Portfolio Summary */
+#portfolio-summary {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent card */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.summary-item {
+    background: linear-gradient(135deg, #2d89ef, #a133ff); /* Blue to Purple Gradient */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.summary-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(173, 216, 230, 0.8); /* Neon glow */
+}
+
+.summary-item h3 {
+    font-size: 20px;
+}
+
+.summary-item p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Dashboard Actions */
+#dashboard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+#dashboard-actions button {
+    background: linear-gradient(90deg, #2d89ef, #2acbf7);
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#dashboard-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 10px rgba(173, 216, 230, 0.8); /* Neon effect */
+}
+
+/* AI Insights Section */
+#ai-insights {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+#ai-insights h2 {
+    margin-bottom: 10px;
+}
+
+/* Code Block Styling */
+code {
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+
+    #dashboard-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
