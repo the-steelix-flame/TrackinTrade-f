@@ -1,17 +1,18 @@
-/* General Styles */
+/* MAIN BODY */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    padding-top: 50px;
     background: linear-gradient(135deg, #201e1e, #201e1e);
     color: white;
     min-height: 100vh;
 }
-
+/* SPACE BETWEEN HERO AND NAVBAR */
 header {
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 1rem;
 }
+
 
 nav {
     display: flex;
@@ -22,23 +23,20 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-    /* Align logo and text */
 }
 
 .logo img {
     height: 40px;
-    /* Adjust as needed */
-    width: auto;
-    margin-right: 10px;
-    /* Space between logo and text */
+    padding-left: 40px;
+    width: 40px;
+    margin-right: 8px;
+    border-top-left-radius: 50%;
+    object-fit: cover;
 }
 
 .logo span {
     font-size: 1.5rem;
     font-weight: bold;
-    /*background: linear-gradient(135deg, #4fdcce, #34a0a4, #5a189a, #762ca0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;*/
     background: linear-gradient(90deg, #4A90E2, #A32CC4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -79,7 +77,7 @@ h3 {
     padding: 4rem 0;
     position: relative;
     overflow: hidden;
-    background: radial-gradient(circle, rgba(59, 167, 156, 0.6), rgba(67, 24, 92, 0.4));
+    background: radial-gradient(circle, rgba(59, 167, 156, 0.6), rgba(67, 24, 92, 0.4)); 
 }
 
 #hero::before {
@@ -100,7 +98,7 @@ h3 {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    gap: 1rem; /* Space between buttons */
+    gap: 1rem; 
 }
 
 .btn {
@@ -108,14 +106,14 @@ h3 {
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #3D3BBB, #611264);
+    background: #00cfff;
     color: white;
     text-decoration: none;
-    border-radius: 6px; /* Slight curve instead of oval */
+    border-radius: 6px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds depth */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
     position: relative;
     overflow: hidden;
 }
@@ -144,11 +142,10 @@ h3 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #3D3BBB, #611264);
+    background: #00cfff;
 }
 
 
-/* Features & Benefits Section */
 #features,
 #benefits {
     text-align: center;
@@ -160,7 +157,7 @@ h3 {
 #benefits h1 {
     font-size: 4rem;
     font-weight: bold;
-    font-family: 'Raleway', sans-serif;  /* Modern, elegant font */
+    font-family: 'Raleway', sans-serif; 
     background: linear-gradient(90deg, #2dc0ff, #df00ef);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -172,7 +169,7 @@ h3 {
 .feature-grid,
 .benefits-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 60px;
     padding: 20px;
     justify-items: center;
@@ -203,7 +200,7 @@ h3 {
 }
 
 .icon {
-    filter: brightness(1.2) contrast(1.5); /* Enhances boldness */
+    filter: brightness(1.2) contrast(1.5); 
     width: 50px;
     height: 50px;
 }
@@ -213,9 +210,9 @@ h3 {
 .download::before {
     content: "";
     display: inline-block;
-    width: 24px; /* Adjust size as needed */
+    width: 24px;
     height: 24px;
-    background-image: url('import.png'); /* Change path */
+    background-image: url('import.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -412,20 +409,26 @@ h3 {
     color: grey;
 }
 
-
 /* Navbar Styling */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #111;
-    padding: 15px 30px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.5s;
 }
 
-/* Menu links */
 .nav-links {
-    list-style: none;
+    padding-right: 40px;
     display: flex;
+    justify-content: center; 
+    align-items: center; 
     gap: 20px;
 }
 
@@ -439,9 +442,6 @@ h3 {
 .nav-links a:hover {
     color: #27a4fd;
 }
-
-/* Right-side menu */
-
 
 .theme-toggle {
     position: absolute;
@@ -460,8 +460,6 @@ h3 {
     height: 24px;
 }
 
-/* Dropdown */
-/* Dropdown Styling */
 .menu {
     position: absolute;
     top: 357x;
@@ -470,6 +468,7 @@ h3 {
 
 /* Menu button */
 .menu-button {
+    padding-right: 12px;
     background: none;
     border: none;
     cursor: pointer;
@@ -515,7 +514,6 @@ h3 {
     width: 20px;
     height: 20px;
 }
-
 
 .dark-mode {
     background: #000;
@@ -566,18 +564,18 @@ html {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #222; /* Dark track background */
+    background: #222;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #a0a0a0; /* Light gray scrollbar handle */
-    border-radius: 4px; /* Rounded edges */
+    background: #a0a0a0; 
+    border-radius: 4px; 
 }
 
 /* Handle on hover */
