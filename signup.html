@@ -67,11 +67,12 @@
 
         .password-toggle {
             position: absolute;
-            right: 12px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
             color: white;
+            padding: 40px;
         }
 
         .btn {
@@ -80,14 +81,14 @@
             border: none;
             border-radius: 5px;
             font-size: 16px;
-            background: linear-gradient(135deg, #39aca0, #611264);
+            background: #00cfff;
             color: white;
             cursor: pointer;
             transition: 0.3s;
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, #611264, #39aca0);
+            background: #00cfff;
             transform: scale(1.05);
         }
 
@@ -107,6 +108,32 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+            <div class="menu">
+                <button class="menu-button">☰</button> <!-- Menu Icon -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord"> Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="signup-container">
         <h2>Create Account</h2>
@@ -118,14 +145,13 @@
             </div>
 
             <div class="input-group">
-                <i>✉️</i>
+                <i>✉</i>
                 <input type="email" id="email" placeholder="Email" required>
             </div>
 
             <div class="input-group">
                 <i>🔑</i>
                 <input type="password" id="password" placeholder="Password" required>
-                <i class="password-toggle" onclick="togglePassword()">👁️</i>
             </div>
 
             <button type="submit" class="btn">Sign Up</button>
