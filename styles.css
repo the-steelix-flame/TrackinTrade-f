@@ -1,12 +1,34 @@
 /* MAIN BODY */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+.new {
+    width: 100%;
+}
+
+.Take {
+    width: 100%; 
+    display: block;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 8rem;
+    font-weight: bold;
+}
+.gradient-text {
+    background: linear-gradient(to right, #009FFD, #8131FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.bold-text {
+    font-weight: 700;
+}
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     padding-top: 50px;
     background: linear-gradient(135deg, #201e1e, #201e1e);
     color: white;
-    min-height: 100vh;
+    min-height: 100vh;  
 }
 
 /* SPACE BETWEEN HERO AND NAVBAR */
@@ -176,10 +198,10 @@ h3 {
 /* Section Headings */
 #features h1,
 #benefits h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: bold;
     font-family: 'Raleway', sans-serif; 
-    background: linear-gradient(90deg, #2dc0ff, #df00ef);
+    background: linear-gradient(to right, #009FFD, #8131FF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;                    
@@ -242,8 +264,8 @@ h3 {
 .chart::before {
     content: "";
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     background-image: url('imgs/chart.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -568,17 +590,18 @@ h3 {
 }
 
 .title {
-    font-size: 2.5rem;
+    text-align: center;
+    font-size: 4rem;
     font-weight: bold;
-    background: linear-gradient(180deg, #8a2be2, #00cfff);
+    background: linear-gradient(to right, #009FFD, #8131FF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .content {
     display: flex;
     justify-content: center;
-    gap: 50px;
-    max-width: 1000px;
+    gap: 150px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -588,12 +611,12 @@ h3 {
 }
 
 .benefit h3 {
-    font-size: 1rem;
+    font-size: 2rem;
     opacity: 1.0;
 }
 
 .benefit p {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     opacity: 0.4;
 }
 
