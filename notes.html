@@ -45,26 +45,41 @@
         /* Notes Container */
         #notes-container {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* ✅ Left align */
-            gap: 15px;
+            flex-wrap: wrap; /* ✅ Wrap to new line when needed */
+            justify-content: flex-start; /* ✅ Align notes properly */
+            gap: 15px; /* ✅ Adds space between notes */
             padding: 20px;
+            width: 100%; /* ✅ Ensures full-width */
+            max-width: 1000px; /* ✅ Limits container width */
+            margin: auto; /* ✅ Centers the notes */
         }
 
-
-        /* Individual Note */
         .note {
-            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex: 1 1 calc(50% - 20px); /* ✅ Each note takes 50% width minus spacing */
+            max-width: 400px; /* ✅ Prevents excessive width */
+            min-width: 250px; /* ✅ Ensures notes don't shrink too much */
+            min-height: 120px;
             padding: 15px;
+            border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s;
             word-wrap: break-word;
-            min-height: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: white; /* White text for contrast */
+            color: white;
+            box-sizing: border-box; /* ✅ Ensures padding doesn’t affect width */
         }
+
+        /* 🔥 Responsive Fix for Small Screens */
+        @media (max-width: 800px) {
+            .note {
+                flex: 1 1 100%; /* ✅ Full width on smaller screens */
+                max-width: 100%;
+            }
+        }
+
 
         .note:hover {
             transform: scale(1.02);
