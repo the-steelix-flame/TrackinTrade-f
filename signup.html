@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - TrackinTrade</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centering the form */
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #27293d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #27a4fd, #3dc0fd, #9a2efd, #b121ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-sizing: border-box; /* Prevents overflow */
+        }
+
+        .input-group input::placeholder {
+            color: #ddd;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: white;
+            padding: 40px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #00cfff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #00cfff;
+            transform: scale(1.05);
+        }
+
+        .login-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #27a4fd;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+            <div class="menu">
+                <button class="menu-button">☰</button> <!-- Menu Icon -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord"> Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="signup-container">
+        <h2>Create Account</h2>
+
+        <form id="signup-form">
+            <div class="input-group">
+                <i>👤</i>
+                <input type="text" id="full-name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <i>✉</i>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group">
+                <i>🔑</i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

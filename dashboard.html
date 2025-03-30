@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TrackinTrade</title>
+    <link rel="stylesheet" href="dashboard.css">
+    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <span2>TrackinTrade - Dashboard</span2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+            <div class="menu">
+                <button class="menu-button">☰</button> <!-- Menu Icon -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord"> Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Welcome, <span id="user-name"></span></h1>
+
+        <section id="portfolio-summary">
+            <h2>Portfolio Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h3>Total Profit</h3>
+                    <p id="total-profit">$0</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Profit-making Trades</h3>
+                    <p id="profit-trades">0</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Loss-making Trades</h3>
+                    <p id="loss-trades">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard-actions">
+            <button id="journal-btn">Take me to my journal</button>
+            <button id="ai-analysis-btn">AI analysis for my trades</button>
+            <button id="notes-btn">Taken notes for my page</button>
+        </section>
+
+        <section id="ai-insights">
+            <h2>AI Insights</h2>
+            <p>Coming soon: AI-powered insights based on your trading data.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
