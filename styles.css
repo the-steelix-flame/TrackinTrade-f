@@ -233,7 +233,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('import.png'); 
+    background-image: url('imgs/import.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -244,7 +244,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('chart.png');
+    background-image: url('imgs/chart.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -255,7 +255,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('filter.png');
+    background-image: url('imgs/filter.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -266,7 +266,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('dairy.png');
+    background-image: url('imgs/dairy.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -277,7 +277,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('satisfaaction.png');
+    background-image: url('imgs/satisfaaction.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -288,7 +288,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('screenshot.png');
+    background-image: url('imgs/screenshot.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -299,7 +299,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('pricecharts.png');
+    background-image: url('imgs/pricecharts.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -310,7 +310,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('excursion.png');
+    background-image: url('imgs/excursion.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -321,7 +321,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('tags.png');
+    background-image: url('imgs/tags.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -332,7 +332,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('manage.png');
+    background-image: url('imgs/manage.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -343,7 +343,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('response.png');
+    background-image: url('imgs/response.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -354,7 +354,7 @@ h3 {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url('more.png');
+    background-image: url('imgs/more.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;

@@ -4,50 +4,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Journal - TradeNote Clone</title>
+    <title>Trading Journal - TrackinTrade</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            max-width: 100vw;
+            border: 1px solid #333;
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: max-content;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+            min-width: 200px;
+        }
+
+        th {
+            background-color: #333;
+            color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .locked {
+            background-color: #222;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            font-weight: bold;
+        }
+
+        .section-heading {
+            background-color: #444;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        input {
+            width: 90%;
+            padding: 6px;
+            background-color: #252525;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: none;
+            border: 1px solid #888;
+        }
+
+        .add-trade-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Add New Trade Button (Fixed at Top Right) */
+        #add-trade-btn {
+            position: fixed; /* Stays fixed at the top right */
+            top: 80px; /* Adjusted to be below the navbar */
+            right: 20px; /* Align to the right */
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b6b, #ff9f43); /* Gradient color */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Hover Effect */
+        #add-trade-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #add-trade-btn {
+                top: 70px; /* Adjust position for smaller screens */
+                right: 10px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+
+
+    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="logo">TradeNote Clone</div>
-            <ul>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="#" id="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
+    
+    <h1><span id="user-name"></span>,'s Trading Journal</h1>
 
-    <main class="journal">
-        <h1>My Trading Journal</h1>
-
+    <div class="table-container">
         <table id="trade-table">
             <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Trade No.</th>
-                    <th>Timeframe</th>
-                    <th>Stock</th>
-                    <th>Position Size</th>
-                    <th>Direction</th>
-                    <th>Entry Price</th>
-                    <th>Exit Price</th>
-                    <th>Profit/Loss</th>
+                <tr id="trade-header">
+                    <th class="locked">Basic Trade Details</th>
                 </tr>
             </thead>
-            <tbody id="trade-body">
-                <!-- Trade entries will be added here dynamically -->
+            <tbody>
+                <!-- Section Headings (Locked, No Input Fields) -->
+                <tr><td class="section-heading">Timeframe</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Stock</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Position Size</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Direction (Long/Short)</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Entry Details</th></tr>
+                <tr><td class="section-heading">Entry Price</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Entry Time</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Reason for Entry (Setup/Signal)</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Exit Details</th></tr>
+                <tr><td class="section-heading">Exit Price</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Exit Time</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Reason for Exit (Target/Stop Loss/Emotion)</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Risk-Reward</th></tr>
+                <tr><td class="section-heading">Stop Loss Price</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Target Price</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Risk-Reward Ratio</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Trade Outcome</th></tr>
+                <tr><td class="section-heading">Profit/Loss</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Percentage Return</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Market Conditions</th></tr>
+                <tr><td class="section-heading">Overall Market Trend (Bullish/Bearish/Sideways)</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">News/Events Impacting Trade</td><td><input type="text"></td></tr>
+        
+                <tr><th class="locked">Reflection & Learnings</th></tr>
+                <tr><td class="section-heading">Mistakes</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">What Went Well</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">Emotions During Trade</td><td><input type="text"></td></tr>
+                <tr><td class="section-heading">How Could This Trade Be Improved?</td><td><input type="text"></td></tr>
             </tbody>
         </table>
+        
+    </div>
 
+    <div class="add-trade-container">
         <button id="add-trade-btn">Add New Trade</button>
+    </div>
 
-        <div id="trade-form" class="hidden">
-            <!-- Form fields for adding a new trade -->
-        </div>
-    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addTradeBtn = document.getElementById("add-trade-btn");
+            const tradeTable = document.getElementById("trade-table");
+            const tradeHeaderRow = document.getElementById("trade-header");
 
+            let tradeCount = 0;
+
+            addTradeBtn.addEventListener("click", function () {
+                tradeCount++;
+
+                const today = new Date().toISOString().split("T")[0];
+
+                // ✅ Stop duplicate headers
+                if (tradeHeaderRow.cells.length > tradeCount) return;
+
+                // Add new column header
+                const tradeHeaderCell = document.createElement("th");
+                tradeHeaderCell.textContent = `${today} / Trade ${tradeCount}`;
+                tradeHeaderCell.style.fontWeight = "bold";
+                tradeHeaderCell.style.textAlign = "center";
+                tradeHeaderRow.appendChild(tradeHeaderCell);
+                tradeHeaderRow.insertBefore(tradeHeaderCell, tradeHeaderRow.children[1]);
+
+                // Select all rows inside tbody
+                const rows = tradeTable.querySelectorAll("tbody tr");
+
+                rows.forEach(row => {
+                    // ✅ Skip section headers
+                    if (row.querySelector("th") !== null) return; 
+
+                    const cells = row.querySelectorAll("td");
+                    
+                    // ✅ Skip adding column if the row already has a column (first default column exists)
+                    if (cells.length > tradeCount) return;
+
+                    const newCell = document.createElement("td");
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.placeholder = "---";
+                    newCell.appendChild(input);
+                    row.insertBefore(newCell, row.children[1]);
+                });
+            });
+        });
+
+
+    </script>
     <script src="script.js"></script>
 </body>
 

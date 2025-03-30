@@ -1,64 +1,179 @@
-/* General Reset */
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-}
-
-/* Dark Mode Background */
-body {
-    background: #121212; /* Dark background */
-    color: white; /* Text in white */
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Navigation Bar */
-header {
-    width: 100%;
-    background: linear-gradient(90deg, #2d89ef, #a133ff); /* Blue to Purple Gradient */
+    padding-top: 50px;
+    background: linear-gradient(135deg, #201e1e, #201e1e);
     color: white;
-    padding: 15px 0;
-    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    min-height: 100vh;
+}
+
+/* SPACE BETWEEN HERO AND NAVBAR */
+header {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    margin: 0 auto;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    display: block;
+    height: 40px;
+    padding-left: 40px;
+    width: 40px;
+    margin-right: 8px;
+    border-top-left-radius: 50%;
+    object-fit: cover;
 }
 
 nav ul {
-    list-style: none;
+    list-style-type: none;
     display: flex;
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin-left: 1rem;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
 }
 
-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: #111; */
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.5s;
 }
+
+.navbar_sign {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.5s;
+}
+
+.nav-links {
+    padding-right: 40px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #27a4fd;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+}
+
+#themeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#themeButton img {
+    width: 24px;
+    height: 24px;
+}
+
+
+/*Dropdown Menu*/
+.menu {
+    position: absolute;
+    top: 357x;
+    right: 0px;
+}
+
+/* Menu button */
+.menu-button {
+    padding-right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+/* Dropdown styling */
+.dropdown {
+    position: absolute;
+    right: 0;
+    background: rgba(34, 34, 34, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    min-width: 150px;
+}
+
+/* Keep dropdown open on hover */
+.menu:hover .dropdown {
+    display: block;
+}
+
+/* Links inside dropdown */
+.dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+/* Add spacing between links */
+.dropdown a + a {
+    margin-top: 5px;
+}
+
+/* Fix icon size */
+.dropdown a img {
+    width: 20px;
+    height: 20px;
+}
+
 
 /* Dashboard Layout */
 .dashboard {
@@ -169,3 +284,16 @@ code {
         gap: 15px;
     }
 }
+
+.logo span2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #4A90E2, #A32CC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+

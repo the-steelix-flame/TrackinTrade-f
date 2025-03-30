@@ -6,13 +6,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trading Notes - TrackinTrade</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Positioning the User's Name */
+        #user-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fffdfd; /* Dark color for visibility */
+        }
+
+        /* Styling the Notes Heading */
+        .notes h1 {
+            position: absolute;
+            top: 80px; /* Below navbar */
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fffefe;
+            margin: 0;
+            padding: 5px 15px;
+        }
+
+        /* Notes Section */
+        .notes {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Notes Container */
+        #notes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        /* Individual Note */
+        .note {
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+            word-wrap: break-word;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white; /* White text for contrast */
+        }
+
+        .note:hover {
+            transform: scale(1.02);
+        }
+
+        /* Delete Button */
+        .delete-note {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .delete-note:hover {
+            color: black;
+        }
+
+        /* Notes Input Section */
+        #note-input-container {
+            width: 50%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* "Take a note..." Placeholder */
+        #note-placeholder {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s ease-in-out;
+        }
+
+        /* "Take a note..." Placeholder */
+        #note-placeholder {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s ease-in-out;
+            margin-top: 80px; /* ⬅️ Adjust this value to move it further down */
+        }
+
+        /* Modern Note Form */
+        #note-form {
+            display: none;
+            background: rgba(255, 255, 255, 0); /* Fully Transparent */
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 252, 252, 0.2);
+            margin-top: 10px;
+            text-align: left;
+            width: 90%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 80px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        @media (max-width: 600px) {
+            #note-form {
+                width: 95%;
+            }
+        }
+
+        /* Note Title Input */
+        #note-title {
+            width: 100%;
+            padding: 8px;
+            font-size: 15px;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            background: transparent;
+        }
+
+        /* Note Textarea */
+        #note-content {
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            background: #f5f5f5;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        #note-title,
+        #note-content {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Save & Cancel Buttons */
+        .note-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #save-note-btn,
+        #cancel-note-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Save Note Button */
+        #save-note-btn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        #save-note-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Cancel Note Button */
+        #cancel-note-btn {
+            background-color: #FF5C5C; /* Red */
+            color: white;
+        }
+
+        #cancel-note-btn:hover {
+            background-color: #e04e4e;
+        }
+
+        /* Modern Notes Styling */
+        .note {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .note:hover {
+            transform: scale(1.02);
+        }
+
+        /* Note Title Input */
+        #note-title {
+            width: 100%;
+            padding: 8px;
+            font-size: 15px;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            background: transparent;
+            color: white; /* White text */
+            font-weight: bold; /* Bold text */
+        }
+
+
+        /* Delete Note Button */
+        .delete-note {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+            float: right;
+        }
+
+
+
+
+    </style>
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="logo">TrackinTrade</div>
-            <ul>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="#" id="logout">Logout</a></li>
             </ul>
@@ -20,21 +270,94 @@
     </header>
 
     <main class="notes">
-        <h1>My Trading Notes</h1>
+        <h1><span id="user-name"></span>'s Notes</h1>
 
-        <div id="notes-container">
-            <!-- Notes will be added here dynamically -->
+<!-- Note Input Box (Modernized) -->
+        <div id="note-input-container">
+            <input type="text" id="note-placeholder" placeholder="Take a note..." readonly>
+
+            <!-- Expanded Note Form -->
+            <div id="note-form" class="hidden">
+                <input id="note-title" type="text" placeholder="Title">
+                <textarea id="note-content" placeholder="Enter your note here..."></textarea>
+                <div class="note-buttons">
+                    <button id="save-note-btn">Save</button>
+                    <button id="cancel-note-btn">Cancel</button>
+                </div>
+            </div>
         </div>
 
-        <button id="add-note-btn">Add New Note</button>
+        <!-- Notes will be added here dynamically -->
+        <div id="notes-container"></div>
 
-        <div id="note-form" class="hidden">
-            <textarea id="note-content" placeholder="Enter your note here..."></textarea>
-            <button id="save-note-btn">Save Note</button>
-        </div>
+        <script src="script.js"></script>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const notePlaceholder = document.getElementById("note-placeholder");
+            const noteForm = document.getElementById("note-form");
+            const saveNoteBtn = document.getElementById("save-note-btn");
+            const cancelNoteBtn = document.getElementById("cancel-note-btn");
+            const noteTitle = document.getElementById("note-title");
+            const noteContent = document.getElementById("note-content");
+            const notesContainer = document.getElementById("notes-container");
+
+            function getRandomBrightColor() {
+                const colors = ["#FF6B6B", "#FF9F43", "#FDCB6E", "#74B9FF", "#55EFC4", "#A29BFE", "#F368E0", "#48DBFB"];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            // Expand input box when clicked
+            notePlaceholder.addEventListener("click", function () {
+                notePlaceholder.style.display = "none";
+                noteForm.style.display = "block";
+                noteTitle.focus();
+            });
+
+            // Save note and add to the TOP of the list
+            saveNoteBtn.addEventListener("click", function () {
+                const title = noteTitle.value.trim();
+                const content = noteContent.value.trim();
+                if (title === "" && content === "") return;
+
+                const noteDiv = document.createElement("div");
+                noteDiv.classList.add("note");
+                noteDiv.style.backgroundColor = getRandomBrightColor();
+
+                noteDiv.innerHTML = `
+                    <div class="note-title">${title || "Untitled Note"}</div>
+                    <p>${content}</p>
+                    <button class="delete-note">Delete</button>
+                `;
+
+                // ✅ Add new note at the TOP
+                notesContainer.prepend(noteDiv);
+
+                // Reset form and show placeholder again
+                noteTitle.value = "";
+                noteContent.value = "";
+                noteForm.style.display = "none";
+                notePlaceholder.style.display = "block";
+
+                // Delete note functionality
+                noteDiv.querySelector(".delete-note").addEventListener("click", function () {
+                    noteDiv.remove();
+                });
+            });
+
+            // Cancel button functionality
+            cancelNoteBtn.addEventListener("click", function () {
+                noteTitle.value = "";
+                noteContent.value = "";
+                noteForm.style.display = "none"; // ✅ Properly hide the form
+                notePlaceholder.style.display = "block"; // ✅ Show placeholder again
+            });
+        });
+
+
+
+    </script>
 </body>
 
 </html>
