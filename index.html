@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT COPY</title>
+    <title>COPY PROJECT</title>
     <link rel="stylesheet" href="styles.css">
+   
+    
 </head>
 
 <body>
@@ -15,17 +17,20 @@
                 <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
                 <span>TrackinTrade</span>
             </div>
-            <ul class="nav-links">
+
+            <button class="navbar-toggler" type="button" id="menu-toggle">☰</button>
+    
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="documentation.html">Documentation</a></li>
                 <li><a href="signup.html" class="btn">Register</a></li>
-                <a href="login.html" class="btn btn-primary">Login</a>
+                <li><a href="login.html" class="btn btn-primary">Login</a></li>
             </ul>
+    
             <div class="menu">
-                <button class="menu-button">☰</button> <!-- Menu Icon -->
                 <div class="dropdown">
                     <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
                         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> GitHub
@@ -43,17 +48,6 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <!-- <section id="hero">
-            <div class="hero-content">
-                <h1 class="hero-h">TrackinTrade - Your Ultimate Trading Journal</h1>
-                <p>TrackinTrade helps traders store, analyze, and optimize their trades for <strong>consistent profitability</strong>.</p>
-                <div class="cta-buttons">
-                    <a href="documentation.html" class="btn">Documentation</a>
-                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" class="btn">Source Code</a>
-                </div>
-            </div>
-        </section> -->
         <section id="hero">
             <div class="video-background">
                 <video autoplay loop muted playsinline>
@@ -63,7 +57,6 @@
             </div>
             <div class="hero-content">
                 <h1 class="hero-h">TrackinTrade - Your Ultimate Trading Journal</h1>
-                <!-- <h2 class="title">Live NIFTY 50 & SENSEX Prices</h2> -->
                 <p>TrackinTrade helps traders store, analyze, and optimize their trades for <strong>consistent profitability</strong>.</p>
                 <div class="cta-buttons">
                     <a href="documentation.html" class="btn">Documentation</a>
@@ -76,7 +69,7 @@
         <section id="live-prices">
             <h2 class="title">Live US largecap prices</h2>
             <div class="tradingview-widget-container">
-                <div class="tradingview-widget"></div> <!-- Container for widget -->
+                <div class="tradingview-widget"></div> 
             </div>
         </section>
         <div class="tradingview-widget-container">
@@ -209,7 +202,11 @@
     <footer>
         <p>&copy; 2025 TrackinTrade. All rights reserved.</p>
     </footer>
-
+    
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+    document.getElementById("nav-menu").classList.toggle("show");
+});
+    </script>
 </body>
-
 </html>
