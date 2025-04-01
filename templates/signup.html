@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TrackinTrade-Signin </title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Centering the form */
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #27293d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #27a4fd, #3dc0fd, #9a2efd, #b121ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-sizing: border-box;
+            /* Prevents overflow */
+        }
+
+        .input-group input::placeholder {
+            color: #ddd;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: white;
+            padding: 40px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #00cfff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #00cfff;
+            transform: scale(1.05);
+        }
+
+        .login-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #27a4fd;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .error-toast.hidden {
+            opacity: 0;
+        }
+
+        .error-toast:not(.hidden) {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo"
+                    class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('documentation') }}">Documentation</a></li>
+            </ul>
+            <div class="menu">
+                <button class="menu-button">☰</button> <!-- Menu Icon -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                            alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord">
+                        Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="signup-container">
+        <h2>Create Account</h2>
+
+        <form id="signup-form" novalidate>
+
+            <!-- Username Input -->
+            <div class="input-group">
+                <i>👤</i>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+
+            <!-- Email Input (pre-filled if provided) -->
+            <div class="input-group">
+                <i>✉</i>
+                <!-- Check if prefill_email is provided from Flask -->
+                <input type="email" id="email" name="email" placeholder="Email"
+                    value="{{ prefill_email if prefill_email else '' }}" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <i>🔑</i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+
+
+        <p class="login-link">Already have an account? <a href="{{ url_for('login_page') }}">Login</a></p>
+    </div>
+
+    <script>
+        // ✅ Password Toggle Function (Cleaner)
+        function togglePassword() {
+            let passwordInput = document.getElementById("password");
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        }
+
+        // ✅ Error Toast Handling (Prevents Stacking)
+        const errorToast = document.createElement('div');
+        errorToast.className = 'error-toast hidden';
+        document.body.appendChild(errorToast);
+
+        const showError = (message, duration = 5000) => {
+            errorToast.textContent = message;
+            errorToast.classList.remove('hidden');
+
+            // Clear previous timeout before setting a new one
+            if (errorToast.timeout) clearTimeout(errorToast.timeout);
+
+            errorToast.timeout = setTimeout(() => errorToast.classList.add('hidden'), duration);
+        };
+
+        // ✅ Signup Form Handling
+        // ✅ Signup Form Handling
+        // ✅ Signup Form Handling
+        document.getElementById('signup-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const username = form.username.value;
+            const email = form.email.value;
+            const password = form.password.value;
+
+            const formData = new URLSearchParams();
+            formData.append("username", username);
+            formData.append("email", email);
+            formData.append("password", password);
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Signup successful!");
+                    window.location.href = "/dashboard"; // Redirect after successful signup
+                } else if (response.status === 409) { // Handle unique constraint violations
+                    alert(data.error); // Show appropriate error message
+
+                    // Redirect based on the provided redirect URL
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                } else {
+                    showError(data.error || 'Signup failed. Please try again.');
+                }
+            } catch (error) {
+                showError('Network error. Please check your connection.');
+            }
+        });
+
+
+        // Pre-fill email on signup page
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+
+            if (email) {
+                const emailInput = document.getElementById('email');
+                if (emailInput) {
+                    emailInput.value = email; // Pre-fill the email input field
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

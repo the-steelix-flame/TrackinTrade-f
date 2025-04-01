@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TrackinTrade-Login </title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #1e1e2e;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            background: linear-gradient(90deg, #27a4fd, #3dc0fd, #9a2efd, #b121ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 40%;
+            transform: translateY(-50%);
+            color: #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #00cfff;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .bottom-text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .bottom-text a {
+            color: #27a4fd;
+            text-decoration: none;
+        }
+
+        .bottom-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo"
+                    class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('documentation') }}">Documentation</a></li>
+            </ul>
+            <div class="menu">
+                <button class="menu-button">☰</button> <!-- Menu Icon -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                            alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord">
+                        Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+
+        <!-- Flask form action points to /login route -->
+        <form id="login-form" action="/login" method="POST">
+
+            <!-- Email Input -->
+            <div class="input-group">
+                <i>📧</i>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <i>🔑</i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Login</button>
+        </form>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+
+        <!-- Signup Link -->
+        <p class="bottom-text">
+            Don't have an account?
+            <a href="{{ url_for('signup_page') }}">Sign Up</a>
+        </p>
+    </div>
+    <script>
+        // ✅ Toggle Password Visibility
+        // ✅ Toggle Password Visibility
+        function togglePassword() {
+            let passwordInput = document.getElementById("password");
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        }
+
+        // ✅ Error Toast Handling (Prevents Stacking)
+        const errorToast = document.createElement('div');
+        errorToast.className = 'error-toast hidden';
+        document.body.appendChild(errorToast);
+
+        const showError = (message, duration = 5000) => {
+            errorToast.textContent = message;
+            errorToast.classList.remove('hidden');
+
+            // Clear previous timeout before setting a new one
+            if (errorToast.timeout) clearTimeout(errorToast.timeout);
+
+            errorToast.timeout = setTimeout(() => errorToast.classList.add('hidden'), duration);
+        };
+
+        // ✅ Login Form Handling
+        document.getElementById('login-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const email = form.email.value;
+            const password = form.password.value;
+
+            const formData = new URLSearchParams();
+            formData.append("email", email);
+            formData.append("password", password);
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Login successful!");
+                    window.location.href = data.redirect || "/dashboard"; // Redirect after login
+                } else {
+                    if (response.status === 401) {
+                        showError(data.error || 'Invalid credentials. Please try again.');
+                    } else if (response.status === 404) { // Handle "User does not exist" case
+                        alert('User does not exist. Redirecting to signup page...');
+                        window.location.href = data.redirect; // Redirect to signup page with email pre-filled
+                    } else {
+                        showError(data.error || 'Login failed. Please try again.');
+                    }
+                }
+            } catch (error) {
+                showError('Network error. Please check your connection.');
+            }
+        });
+
+        // Pre-fill email on login page
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+
+            if (email) {
+                const emailInput = document.getElementById('email');
+                if (emailInput) {
+                    emailInput.value = email; // Pre-fill the email input field
+                }
+            }
+        });
+
+
+    </script>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+
+</html>

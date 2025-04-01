@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Documentation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title> TrackinTrade-Documentation </title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
         /* Basic Reset */
         * {
@@ -91,11 +92,11 @@
     <header>
         <nav class="navbar_sign">
             <div class="logo">
-                <img src="TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo">
                 <span>TrackinTrade</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
             </ul>
             <div class="menu">
                 <button class="menu-button">☰</button> <!-- Menu Icon -->

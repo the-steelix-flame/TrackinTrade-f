@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TrackinTrade-Journal </title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            max-width: 100vw;
+            border: 1px solid #333;
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: max-content;
+        }
+
+        th,
+        td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+            min-width: 200px;
+        }
+
+        th {
+            background-color: #333;
+            color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .locked {
+            background-color: #222;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            font-weight: bold;
+        }
+
+        .section-heading {
+            background-color: #444;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        input {
+            width: 90%;
+            padding: 6px;
+            background-color: #252525;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: none;
+            border: 1px solid #888;
+        }
+
+        .add-trade-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Add New Trade Button (Fixed at Top Right) */
+        #add-trade-btn {
+            position: fixed;
+            /* Stays fixed at the top right */
+            top: 80px;
+            /* Adjusted to be below the navbar */
+            right: 20px;
+            /* Align to the right */
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+            /* Gradient color */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Hover Effect */
+        #add-trade-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #add-trade-btn {
+                top: 70px;
+                /* Adjust position for smaller screens */
+                right: 10px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar_sign">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo"
+                    class="d-inline-block align-text-top">
+                <span>TrackinTrade</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>{{ username }}'s Trading Journal</h1>
+
+    <div class="table-container">
+        <table id="trade-table">
+            <thead>
+                <tr id="trade-header">
+                    <th class="locked">Basic Trade Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Section Headings (Locked, No Input Fields) -->
+                <tr>
+                    <td class="section-heading">Timeframe</td>
+                    <td><input type="text" name="timeframe"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Stock</td>
+                    <td><input type="text" name="stock"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Position Size</td>
+                    <td><input type="number" name="position_size"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Direction (Long/Short)</td>
+                    <td><input type="text" name="direction"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Entry Details</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Entry Price</td>
+                    <td><input type="number" name="entry_price" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Entry Time</td>
+                    <td><input type="time" name="entry_time"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Reason for Entry</td>
+                    <td><input type="text" name="entry_reason"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Exit Details</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Exit Price</td>
+                    <td><input type="number" name="exit_price" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Exit Time</td>
+                    <td><input type="time" name="exit_time"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Reason for Exit</td>
+                    <td><input type="text" name="exit_reason"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Risk-Reward</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Stop Loss Price</td>
+                    <td><input type="number" name="stop_loss_price" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Target Price</td>
+                    <td><input type="number" name="target_price" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Risk-Reward Ratio</td>
+                    <td><input type="number" name="risk_reward_ratio" step="0.01"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Trade Outcome</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Profit/Loss</td>
+                    <td><input type="number" name="profit_loss" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Percentage Return</td>
+                    <td><input type="number" name="percentage_return" step="0.01"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Market Conditions</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Market Trend</td>
+                    <td><input type="text" name="overall_market_trend"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">News Impact</td>
+                    <td><input type="text" name="news_impact"></td>
+                </tr>
+
+                <tr>
+                    <th class="locked">Reflection & Learnings</th>
+                </tr>
+                <tr>
+                    <td class="section-heading">Mistakes</td>
+                    <td><input type="text" name="mistakes"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">What Went Well</td>
+                    <td><input type="text" name="what_went_well"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Emotions During Trade</td>
+                    <td><input type="text" name="emotions_during_trade"></td>
+                </tr>
+                <tr>
+                    <td class="section-heading">Improvement Suggestions</td>
+                    <td><input type="text" name="improvement_suggestions"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="add-trade-container">
+        <button id="add-trade-btn">Add New Trade</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const addTradeBtn = document.getElementById("add-trade-btn");
+            const tradeTable = document.getElementById("trade-table");
+            const tradeHeaderRow = document.getElementById("trade-header");
+            const API_BASE = window.location.origin;
+            let tradeCount = 0;
+
+            // 🔄 Load Existing Journal Entries
+            async function loadJournalEntries() {
+                try {
+                    const userId = "{{ user_id }}";
+                    const response = await fetch(`${API_BASE}/get-journal-entries?user_id=${userId}`);
+                    if (!response.ok) throw new Error('Failed to fetch entries');
+                    const entries = await response.json();
+                    entries.forEach(entry => createTradeColumn(entry.id, entry));
+                } catch (error) {
+                    console.error(error);
+                    alert('Failed to load entries');
+                }
+            }
+
+            // ➕ Add New Trade Column (Fixed)
+            addTradeBtn.addEventListener("click", async function () {
+                try {
+                    // Fix 1: Get user_id from proper source
+                    const userId = parseInt("{{ user_id }}");  // Convert to integer
+
+                    // Fix 2: Correct object syntax in addTradeBtn click handler
+                    const newEntry = {
+                        timeframe: "",
+                        stock: "",
+                        position_size: 0,
+                        direction: "Long",
+                        entry_price: 0.0,
+                        entry_time: "00:00",
+                        entry_reason: "",
+                        exit_price: 0.0,
+                        exit_time: "00:00",
+                        exit_reason: "",
+                        stop_loss_price: 0.0,
+                        target_price: 0.0,
+                        risk_reward_ratio: 1.0,
+                        profit_loss: 0.0,
+                        percentage_return: 0.0,
+                        overall_market_trend: "Bullish",
+                        news_impact: "",
+                        mistakes: "",
+                        what_went_well: "",
+                        emotions_during_trade: "",
+                        improvement_suggestions: ""
+                    };
+
+                    const response = await fetch(`${API_BASE}/add-journal-entry`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(newEntry)
+                    });
+
+                    if (!response.ok) throw new Error('Failed to add entry');
+                    const result = await response.json();
+                    createTradeColumn(result.entry_id, newEntry);
+                } catch (error) {
+                    console.error(error);
+                    alert('Failed to add trade');
+                }
+            });
+
+            // ✏️ Create Trade Column (Optimized)
+            function createTradeColumn(entryId, entryData) {
+                // Create header with delete button
+                const headerCell = document.createElement("th");
+                headerCell.innerHTML = `
+            <div class="trade-header">
+                <div>${entryData.trade_date}</div>
+                <div>Trade ${entryId}</div>
+                <button class="delete-btn">❌</button>
+            </div>
+        `;
+                headerCell.dataset.entryId = entryId;
+                headerCell.querySelector('.delete-btn').onclick = () => deleteTrade(entryId);
+                tradeHeaderRow.appendChild(headerCell);
+
+                // Create input cells
+                tradeTable.querySelectorAll("tbody tr").forEach(row => {
+                    if (row.querySelector("th")) return;
+
+                    const inputName = row.querySelector('.section-heading').textContent
+                        .toLowerCase()
+                        .replace(/[()/]/g, '')
+                        .replace(/\s+/g, '_');
+
+                    const newCell = document.createElement("td");
+                    const input = document.createElement("input");
+                    input.type = row.querySelector("input").type;
+                    input.value = entryData[inputName] || '';
+                    input.dataset.entryId = entryId;
+                    input.addEventListener("blur", handleInputUpdate);
+
+                    newCell.appendChild(input);
+                    row.appendChild(newCell);
+                });
+            }
+
+            // 🔄 Auto-Save Functionality
+            async function handleInputUpdate(e) {
+                const entryId = e.target.dataset.entryId;
+                const fieldName = e.target.name;
+                const value = e.target.type === 'number' ?
+                    parseFloat(e.target.value) || 0 :
+                    e.target.value;
+
+                try {
+                    await fetch(`${API_BASE}/update-journal-entry/${entryId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ [fieldName]: value })
+                    });
+                } catch (error) {
+                    console.error("Update failed:", error);
+                    alert('Failed to save changes');
+                }
+            }
+
+            // 🗑️ Delete Trade
+            async function deleteTrade(entryId) {
+                if (!confirm('Delete this trade permanently?')) return;
+
+                try {
+                    const response = await fetch(`${API_BASE}/delete-journal-entry/${entryId}`, {
+                        method: "DELETE"
+                    });
+
+                    if (!response.ok) throw new Error('Delete failed');
+
+                    // Remove visual elements
+                    document.querySelectorAll(`[data-entry-id="${entryId}"]`).forEach(el => el.remove());
+                } catch (error) {
+                    console.error(error);
+                    alert('Delete failed');
+                }
+            }
+
+            // Start the application
+            loadJournalEntries();
+        });
+
+    </script>
+</body>
+
+</html>

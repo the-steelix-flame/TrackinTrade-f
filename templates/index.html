@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackinTrade - Professional Trading Journal</title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        #hero {
+            border-radius: 25px;
+            text-align: center;
+            padding: 13rem 0;
+            position: relative;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* background: radial-gradient(circle, rgba(59, 167, 156, 0.6), rgba(67, 24, 92, 0.4));  */
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 50%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(59, 167, 156, 0.6), rgba(67, 24, 92, 0.4));
+            filter: blur(50px);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+         .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden; 
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            
+        }
+
+        .cta-buttons {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #00cfff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+        }
+
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: #00cfff;
+        }
+
+
+        #features,
+        #benefits {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        /* Section Headings */
+        #features h1,
+        #benefits h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(to right, #009FFD, #8131FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            padding: 0.5rem 0;
+        }
+
+        /* Grid Layout */
+        .feature-grid,
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        /* Card Style for Features & Benefits */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Icon Styling */
+        .icon {
+            font-size: 40px;
+            color: #0089c8;
+            /* Neon blue */
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            filter: brightness(1.2) contrast(1.5);
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Specific Icons */
+        .download::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/import.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .chart::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/chart.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .filter::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/filter.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .diary::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/dairy.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .thumbs-up::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/satisfaaction.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .screenshot::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/screenshot.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .price-chart::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/pricecharts.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .excursion::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/excursion.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .tag::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/tags.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .import::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/manage.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .responsive::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/response.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .more::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("{{ url_for('static', filename='imgs/more.png') }}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        
+        .bantu{
+            margin-left: 43rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo">
+                <span>TrackinTrade</span>
+            </div>
+
+            <button class="navbar-toggler" type="button" id="menu-toggle">☰</button>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="{{ url_for('documentation') }}">Documentation</a></li>
+                <li><a href="{{ url_for('signup_page') }}" class="btn">Register</a></li>
+                <li><a href="{{ url_for('login_page') }}" class="btn btn-primary">Login</a></li>
+            </ul>
+            <div class="menu">
+                <!-- <button class="menu-button">☰</button> -->
+                <div class="dropdown">
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" target="_blank">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                            alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://discord.com" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Discord_logo.svg" alt="Discord">
+                        Discord
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="new">
+        <h1 class="Take"><span class="gradient-text">Take our best</span> <br> <span class="bold-text">parts for
+                yourself</span></h1>
+    </div>
+
+    <main>
+        <section id="hero">
+            <div class="video-background">
+                <video autoplay loop muted playsinline>
+                    <source src="{{ url_for('static', filename='NEW_VIDEO.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-h">TrackinTrade - Your Ultimate Trading Journal</h1>
+                <p>TrackinTrade helps traders store, analyze, and optimize their trades for <strong>consistent
+                        profitability</strong>.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('documentation') }}" class="btn">Documentation</a>
+                    <a href="https://github.com/the-steelix-flame/TrackinTrade-f.git" class="btn">Source Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- USD UPDATES -->
+        <section id="live-prices">
+            <h2 class="title">Live US largecap prices</h2>
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget"></div> 
+            </div>
+        </section>
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+        </div>
+        <script type="text/javascript">
+            window.TradingView = window.TradingView || {};
+            TradingView.onready = function() {
+                new TradingView.widget({
+                    "symbols": [
+                        { "description": "S&P 500", "proName": "OANDA:SPX500USD" },
+                        { "description": "NASDAQ 100", "proName": "OANDA:NAS100USD" },
+                        { "description": "Dow Jones", "proName": "OANDA:US30USD" },
+                        { "description": "Apple", "proName": "NASDAQ:AAPL" },
+                        { "description": "Microsoft", "proName": "NASDAQ:MSFT" },
+                        { "description": "Amazon", "proName": "NASDAQ:AMZN" },
+                        { "description": "Google", "proName": "NASDAQ:GOOGL" },
+                        { "description": "Meta", "proName": "NASDAQ:META" },
+                        { "description": "Tesla", "proName": "NASDAQ:TSLA" },
+                        { "description": "Nvidia", "proName": "NASDAQ:NVDA" },
+                        { "description": "Berkshire Hathaway", "proName": "NYSE:BRK.B" },
+                        { "description": "JPMorgan Chase", "proName": "NYSE:JPM" },
+                        { "description": "Johnson & Johnson", "proName": "NYSE:JNJ" },
+                        { "description": "Visa", "proName": "NYSE:V" },
+                        { "description": "Walmart", "proName": "NYSE:WMT" },
+                        { "description": "Procter & Gamble", "proName": "NYSE:PG" },
+                        { "description": "UnitedHealth", "proName": "NYSE:UNH" },
+                        { "description": "Mastercard", "proName": "NYSE:MA" },
+                        { "description": "ExxonMobil", "proName": "NYSE:XOM" },
+                        { "description": "Chevron", "proName": "NYSE:CVX" }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "en",
+                    "container_id": "tradingview-widget-container__widget"
+                });
+            };
+        </script>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async></script>
+
+
+        <!-- Other sections remain the same -->
+        <section id="benefits">
+            <h2 class="title">Benefits</h2>
+            <div class="content">
+                <div class="benefit">
+                    <h3>Built for traders who care about data security and privacy</h3>
+                    <p>You are 100% in control of your data.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Built for individuals that need simplicity and flexibility</h3>
+                    <p>TrackinTrade is designed to be a simple yet powerful trading journal, that you can modify your
+                        way with an open core codebase.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Features Section -->
+        <section id="features">
+            <h1>Features</h1>
+            <div class="feature-grid">
+                <div class="card">
+                    <i class="icon download"></i>
+                    <h3>Import</h3>
+                    <p>Import trades from your broker platform.</p>
+                </div>
+                <div class="card">
+                    <i class="icon chart"></i>
+                    <h3>Visualize</h3>
+                    <p>Visualize your trades on charts and get meaningful insight from your data.</p>
+                </div>
+                <div class="card">
+                    <i class="icon filter"></i>
+                    <h3>Filter</h3>
+                    <p>Filter your results by date, position, patterns, mistakes, and much more.</p>
+                </div>
+                <div class="card">
+                    <i class="icon diary"></i>
+                    <h3>Diary</h3>
+                    <p>Keep a daily diary of your trading journey to work on your trader psychology.</p>
+                </div>
+                <div class="card">
+                    <i class="icon thumbs-up"></i>
+                    <h3>Satisfaction</h3>
+                    <p>Mark each of your trades and days as good or bad depending on your trading rules.</p>
+                </div>
+                <div class="card">
+                    <i class="icon screenshot"></i>
+                    <h3>Screenshots</h3>
+                    <p>Add and annotate chart screenshots to reflect on trade entries or setups.</p>
+                </div>
+
+                <!-- New Features Added Below -->
+                <div class="card">
+                    <i class="icon price-chart"></i>
+                    <h3>Price Charts</h3>
+                    <p>Visualize Price Charts with entry and exit points of your trades.</p>
+                </div>
+                <div class="card">
+                    <i class="icon excursion"></i>
+                    <h3>Excursions</h3>
+                    <p>Add MFE prices automatically for deeper efficiency analysis.</p>
+                </div>
+                <div class="card">
+                    <i class="icon tag"></i>
+                    <h3>Tags</h3>
+                    <p>Add tags and tag groups to identify patterns, setups, or mistakes.</p>
+                </div>
+                <div class="card">
+                    <i class="icon import"></i>
+                    <h3>Manage Imports</h3>
+                    <p>Clean your imports with one simple click.</p>
+                </div>
+                <div class="card">
+                    <i class="icon responsive"></i>
+                    <h3>Responsive</h3>
+                    <p>Use TradeNote on your mobile devices.</p>
+                </div>
+                <div class="card">
+                    <i class="icon more"></i>
+                    <h3>And more...</h3>
+                    <p>More features coming soon. Request yours via GitHub or Discord.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="bantu">
+            <p>&copy; 2025 TrackinTrade.</p>
+            <p>&nbsp;&nbsp;&nbsp;All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <!-- JavaScript Files -->
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+    document.getElementById("nav-menu").classList.toggle("show");
+});
+    </script>
+</body>
+</html>
+

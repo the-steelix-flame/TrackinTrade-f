@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Notes - TrackinTrade</title>
-    <link rel="stylesheet" href="styles.css">
+    <title> TrackinTrade-Notes </title>
+    <link rel="icon" href="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
         /* General Styles */
         body {
@@ -19,13 +20,15 @@
         #user-name {
             font-size: 20px;
             font-weight: bold;
-            color: #fffdfd; /* Dark color for visibility */
+            color: #fffdfd;
+            /* Dark color for visibility */
         }
 
         /* Styling the Notes Heading */
         .notes h1 {
             position: absolute;
-            top: 80px; /* Below navbar */
+            top: 80px;
+            /* Below navbar */
             left: 20px;
             font-size: 24px;
             font-weight: bold;
@@ -45,13 +48,19 @@
         /* Notes Container */
         #notes-container {
             display: flex;
-            flex-wrap: wrap; /* ✅ Wrap to new line when needed */
-            justify-content: flex-start; /* ✅ Align notes properly */
-            gap: 15px; /* ✅ Adds space between notes */
+            flex-wrap: wrap;
+            /* ✅ Wrap to new line when needed */
+            justify-content: flex-start;
+            /* ✅ Align notes properly */
+            gap: 15px;
+            /* ✅ Adds space between notes */
             padding: 20px;
-            width: 100%; /* ✅ Ensures full-width */
-            max-width: 1000px; /* ✅ Limits container width */
-            margin: auto; /* ✅ Centers the notes */
+            width: 100%;
+            /* ✅ Ensures full-width */
+            max-width: 1000px;
+            /* ✅ Limits container width */
+            margin: auto;
+            /* ✅ Centers the notes */
         }
 
         .note {
@@ -59,9 +68,12 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            flex: 1 1 calc(50% - 20px); /* ✅ Each note takes 50% width minus spacing */
-            max-width: 400px; /* ✅ Prevents excessive width */
-            min-width: 250px; /* ✅ Ensures notes don't shrink too much */
+            flex: 1 1 calc(50% - 20px);
+            /* ✅ Each note takes 50% width minus spacing */
+            max-width: 400px;
+            /* ✅ Prevents excessive width */
+            min-width: 250px;
+            /* ✅ Ensures notes don't shrink too much */
             min-height: 120px;
             padding: 15px;
             border-radius: 8px;
@@ -69,13 +81,15 @@
             transition: transform 0.2s;
             word-wrap: break-word;
             color: white;
-            box-sizing: border-box; /* ✅ Ensures padding doesn’t affect width */
+            box-sizing: border-box;
+            /* ✅ Ensures padding doesn’t affect width */
         }
 
         /* 🔥 Responsive Fix for Small Screens */
         @media (max-width: 800px) {
             .note {
-                flex: 1 1 100%; /* ✅ Full width on smaller screens */
+                flex: 1 1 100%;
+                /* ✅ Full width on smaller screens */
                 max-width: 100%;
             }
         }
@@ -134,13 +148,15 @@
             background: white;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.2s ease-in-out;
-            margin-top: 80px; /* ⬅️ Adjust this value to move it further down */
+            margin-top: 80px;
+            /* ⬅️ Adjust this value to move it further down */
         }
 
         /* Modern Note Form */
         #note-form {
             display: none;
-            background: rgba(255, 255, 255, 0); /* Fully Transparent */
+            background: rgba(255, 255, 255, 0);
+            /* Fully Transparent */
             padding: 12px;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(255, 252, 252, 0.2);
@@ -210,7 +226,8 @@
 
         /* Save Note Button */
         #save-note-btn {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
+            /* Green */
             color: white;
         }
 
@@ -220,7 +237,8 @@
 
         /* Cancel Note Button */
         #cancel-note-btn {
-            background-color: #FF5C5C; /* Red */
+            background-color: #FF5C5C;
+            /* Red */
             color: white;
         }
 
@@ -238,10 +256,13 @@
             min-height: 100px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align text at the top */
-            align-items: flex-start; /* Align content to the left */
+            justify-content: flex-start;
+            /* Align text at the top */
+            align-items: flex-start;
+            /* Align content to the left */
             color: white;
-            width: 100%; /* Ensures notes use full container width */
+            width: 100%;
+            /* Ensures notes use full container width */
         }
 
 
@@ -258,8 +279,10 @@
             border-bottom: 2px solid #ddd;
             outline: none;
             background: transparent;
-            color: white; /* White text */
-            font-weight: bold; /* Bold text */
+            color: white;
+            /* White text */
+            font-weight: bold;
+            /* Bold text */
         }
 
 
@@ -277,16 +300,18 @@
         }
 
         .note-title {
-            font-size: 18px; /* ✅ Bigger title */
-            font-weight: bold; /* ✅ Bold title */
+            font-size: 18px;
+            /* ✅ Bigger title */
+            font-weight: bold;
+            /* ✅ Bold title */
             margin-bottom: 5px;
         }
 
         .note p {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.9); /* ✅ Slightly dim text */
+            color: rgba(255, 255, 255, 0.9);
+            /* ✅ Slightly dim text */
         }
-
     </style>
 </head>
 
@@ -294,12 +319,13 @@
     <header>
         <nav class="navbar_sign">
             <div class="logo">
-                <img src="imgs/TT LOGO-1.png" alt="Logo" class="d-inline-block align-text-top">
+                <img src="{{ url_for('static', filename='imgs/TT LOGO-1.png') }}" alt="Logo"
+                    class="d-inline-block align-text-top">
                 <span>TrackinTrade</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
                 <li><a href="#" id="logout">Logout</a></li>
             </ul>
         </nav>
@@ -308,7 +334,7 @@
     <main class="notes">
         <h1><span id="user-name"></span>'s Notes</h1>
 
-<!-- Note Input Box (Modernized) -->
+        <!-- Note Input Box (Modernized) -->
         <div id="note-input-container">
             <input type="text" id="note-placeholder" placeholder="Take a note..." readonly>
 
