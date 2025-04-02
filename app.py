@@ -13,8 +13,8 @@ import json
 
 # Initialize Flask App
 app = Flask(__name__,
-            template_folder=os.path.abspath('../templates'),
-            static_folder=os.path.abspath('../static'))
+            template_folder=os.path.abspath('templates'),
+            static_folder=os.path.abspath('static'))
 
 # Configure CORS and JWT
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -397,6 +397,4 @@ def login_page():
 def home():
     return render_template('index.html')
 
-if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8000)
+
